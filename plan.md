@@ -1,9 +1,8 @@
 ---
 plan: morning-digest
-status: done
+status: ready
 owner: rook
 opened: 2026-10-29
-closed: 2026-11-04
 ---
 
 # Morning digest
@@ -78,18 +77,3 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
-
-## Issues
-
-| # | Issue | Blocked by | Worker | Closed |
-|---|-------|-----------|--------|--------|
-| 1 | Digest types: DigestRow and readNight signature | — | claude-code · haiku · default | 2026-11-04 |
-| 2 | Run log reader (readNight) | #1 | claude-code · opus · default | 2026-11-04 |
-| 3 | Digest page: GET /digest/:night | #1 | claude-code · sonnet · default | 2026-11-04 |
-| 4 | Digest JSON: GET /api/digest/:night | #1 | claude-code · sonnet · default | 2026-11-04 |
-| 5 | Board link to each night's digest with counts | #1 | claude-code · sonnet · default | 2026-11-04 |
-| 6 | Route tests for the digest page and JSON | #1 | claude-code · haiku · default | 2026-11-04 |
-| 7 | Preview: save the page, publish it, send the link | #2–#6 | claude-code · sonnet · default | 2026-11-04 |
-| 8 | Clean up: take the marker off the preview, archive the plan | #7 | claude-code · sonnet · default | 2026-11-04 |
-
-The preview's marker was taken off the same link (re-saved with `LANE_MARKER` unset and force-pushed as one fresh commit). See ADR 0003.

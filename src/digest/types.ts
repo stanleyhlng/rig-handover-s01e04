@@ -15,8 +15,8 @@ export type DigestNight = {
   badLines: number; // lines that did not parse; counted, never thrown
 };
 
+// readNight(runsDir, night): Promise<DigestNight | null>
 // null = no file for that night (the page returns 404).
 // An empty file gives { rows: [], badLines: 0 }.
-export async function readNight(runsDir: string, night: string): Promise<DigestNight | null> {
-  throw new Error('not implemented');
-}
+// Implemented in ./read.ts; re-exported here so imports from types.ts keep working.
+export { readNight } from './read.js';

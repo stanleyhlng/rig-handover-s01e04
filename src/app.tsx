@@ -20,15 +20,25 @@ export function createApp(config: RigConfig = loadConfig()) {
     ),
   );
 
+  // One loader for the page and the JSON, so they never disagree (ADR 0001).
+  const loadNight = (night: string) => readNight(config.runsDir, night);
+
   app.get('/digest/:night', async (c) => {
     const night = c.req.param('night');
-    const digest = await readNight(config.runsDir, night);
+    const digest = await loadNight(night);
     if (!digest) return c.text('no such night', 404);
     return c.html(
       <Layout title={`digest ${night}`} lane={lane()}>
         <DigestPage night={night} digest={digest} />
       </Layout>,
     );
+  });
+
+  app.get('/api/digest/:night', async (c) => {
+    const night = c.req.param('night');
+    const digest = await loadNight(night);
+    if (!digest) return c.json({ error: 'no such night', night }, 404);
+    return c.json({ night, rows: digest.rows, badLines: digest.badLines });
   });
 
   return app;
